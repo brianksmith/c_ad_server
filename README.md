@@ -1,6 +1,6 @@
 # Comcast Ad Server Coding Challenge
 
-This coding challenge was writen in Java using Spring Boot and maven.
+This coding challenge was writen in Java using Spring Boot and maven.  The persistence mechanism is just an in mmemory hashmap.  In a production environment it would probably have been in an sql database(mysql/postgres/etc) with a cache(redis) for read performance.  The web tier would consist of mulitple web servers behind a proxy utilizing a round robin distribution. 
 
 ## Building
 mvn clean install
