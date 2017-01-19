@@ -1,5 +1,7 @@
 package org.brian.smith.adserver.controller;
 
+import java.util.Collection;
+
 import org.brian.smith.adserver.domain.Ad;
 import org.brian.smith.adserver.repository.AdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,10 @@ public class AdController {
 		return new ResponseEntity<Ad>(adRepository.create(ad), HttpStatus.CREATED);
 	}
 
-//	@RequestMapping(value="/ad", method = RequestMethod.GET)
-//	public Ad getGreetings(@RequestParam(value="name", defaultValue="World") String name) {
-//		return new ResponseEntity<Ad>(adDao.getAd(partnerId))
-//	}
+	@RequestMapping(value="/ads", method = RequestMethod.GET)
+	public ResponseEntity<Collection<Ad>> getGreetings() {
+		return new ResponseEntity<Collection<Ad>>(adRepository.getAll(), HttpStatus.OK);
+	}
 	
 	@RequestMapping(value="/ad/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Ad> getGreeting(@PathVariable String id) {
