@@ -8,6 +8,9 @@ mvn clean install
 ## Running 
 mvn spring-boot:run
 
+## Run Test Cases
+mvn clean test
+
 ## Viewing an ad campaign
 curl -X GET -H "Cache-Control: no-cache" "http://localhost:8080/ad/12"
 
