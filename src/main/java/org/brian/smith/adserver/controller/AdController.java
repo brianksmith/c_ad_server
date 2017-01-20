@@ -1,12 +1,16 @@
 package org.brian.smith.adserver.controller;
 
+import java.io.IOException;
 import java.util.Collection;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.brian.smith.adserver.domain.Ad;
 import org.brian.smith.adserver.repository.AdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +22,11 @@ public class AdController {
 
 	@Autowired
 	private AdRepository adRepository;
+	
+	@ExceptionHandler
+	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
+	    response.sendError(HttpStatus.BAD_REQUEST.value());
+	}
 	
 	@RequestMapping(value="/ad", method = RequestMethod.POST)
 	public ResponseEntity<Ad> createGreeting(@RequestBody Ad ad) {
@@ -33,5 +42,4 @@ public class AdController {
 	public ResponseEntity<Ad> getGreeting(@PathVariable String id) {
 		return new ResponseEntity<Ad>(adRepository.getAd(id), HttpStatus.OK);
 	}
-	
 }

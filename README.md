@@ -18,5 +18,7 @@ curl -X POST -H "accept: application/json" -H "Content-Type: application/json" -
     "duration" : 30
 }' "http://localhost:8080/ad"
 
+## Getting all ad campaigns
+curl -X GET -H "Accept: application/json" -H "Cache-Control: no-cache"  "http://localhost:8080/ads"
 
 
